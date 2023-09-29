@@ -1,6 +1,6 @@
 ---
 title: "Gov 50 Final Project"
-author: "Your Name Here"
+author: "Ella Dotzler"
 description: "My final project"
 output:
   distill::distill_article:
@@ -12,3 +12,5 @@ output:
 ## Project thoughts
 
 I am interested in exploring data related to...
+
+I am interested in exploring data related to… I would like to explore incarceration rates among different populations with an emphasis on race and socioeconomic status. While I am not sure that this is the final topic I will decide to pursue—especially depending on data availability—this is the topic that I am primarily interested in. I would be interested in obtaining the correlation between race, incarceration, and police presence in a community but am unsure if this is too many variables to focus on for the scope of this project.
