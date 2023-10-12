@@ -14,3 +14,11 @@ output:
 I am interested in exploring data related to...
 
 I am interested in exploring data related to… I would like to explore incarceration rates among different populations with an emphasis on race and socioeconomic status. While I am not sure that this is the final topic I will decide to pursue—especially depending on data availability—this is the topic that I am primarily interested in. I would be interested in obtaining the correlation between race, incarceration, and police presence in a community but am unsure if this is too many variables to focus on for the scope of this project.
+
+
+
+MILESTONE 2:
+
+Is there a positive correlation between Share Voters who Voted Trump per state and Average Hate Crimes per 100k people per state? In this study, I plan to determine if there is a correlation between voting patterns in the 2016 election and hate crime rates dependent on state. I hypothesize that in states where there is a higher percentage of Trump supporting votes, there will be an increased rate of hate crimes due to extreme polarization of the state—states with high levels of Trump supporting votes are often very polarized, ultimately leading to a higher average of hate crimes in the state. My sample is comprised of data analyzing income inequality and levels of hate crimes, but one of the variables happens to be levels of Trump support within the state, which offers an interesting political perspective on the issue that has likely been underreported. The outcome variable of interest relates to the average hate crimes per 100k people in any given state and is calculated year over year per 100k people. The observed pattern in the data that would support this hypothesis would be a positive correlation between the percentage of Trump supportive votes and a higher rate of hate crimes per 100k people. The opposite would therefore disprove my hypothesis—if a low support level of Trump contributed to a high level of hate crimes or if a high support level of Trump contributed to a low level of hate crimes.
+
+https://github.com/fivethirtyeight/data/blob/master/hate-crimes/hate_crimes.csv
