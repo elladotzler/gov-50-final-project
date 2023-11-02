@@ -46,7 +46,6 @@ scatterplot <- data |>
   geom_point()+
   labs(x="Share of Voters Voted for Trump", y="Average Hate Crimes per 100k Population")
 
-
 scatterplot
 ```
 
