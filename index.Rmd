@@ -48,4 +48,23 @@ scatterplot <- data |>
 
 scatterplot
 ```
+MILESTONE 3:
+
+The scatterplot above illustrates the relationship between the share of voters who voted for Trump and the average hate crimes per 100k population. Each point on the plot represents a state, with the x-axis showing the percentage of voters who supported Trump, and the y-axis representing the average hate crimes per 100k population.
+
+When looking at the scatterplot, it appears that there is a complex correlation at hand—and even perhaps no correlation. However, it should be noted that all of the values on the table are concentrated between the 0.4 and 0.6 range of the x-variable (Share of Voters Voted for Trump). Within this range, there seems to be a slight negative correlation. However, it is essential to conduct further statistical analysis to determine the correlation. To do so, I will be adding the correlation coefficient to my scatterplot
+
+```{r}
+str(data)
+
+correlation_coefficient <- cor(data$share_voters_voted_trump, data$avg_hatecrimes_per_100k_fbi)
+
+scatterplot <- ggplot(data, aes(x = share_voters_voted_trump, y = avg_hatecrimes_per_100k_fbi)) +
+  geom_point() +
+  labs(x = "Share of Voters Voted for Trump", y = "Average Hate Crimes per 100k Population") +
+  annotate("text", x = 0.5, y = 9, label = paste("Correlation: ", round(correlation_coefficient, 3)))
+
+scatterplot
+
+```
 
