@@ -115,7 +115,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["hate_crimes_final.csv","hate_crimes_final.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["hate_crimes_final.csv","hate_crimes_final.xlsx","index_files/anchor-4.2.2/anchor.min.js","index_files/bowser-1.9.3/bowser.min.js","index_files/distill-2.2.21/template.v2.js","index_files/figure-html5/unnamed-chunk-1-1.png","index_files/figure-html5/unnamed-chunk-2-1.png","index_files/header-attrs-2.17/header-attrs.js","index_files/header-attrs-2.24/header-attrs.js","index_files/jquery-3.6.0/jquery-3.6.0.js","index_files/jquery-3.6.0/jquery-3.6.0.min.js","index_files/jquery-3.6.0/jquery-3.6.0.min.map","index_files/popper-2.6.0/popper.min.js","index_files/tippy-6.2.7/tippy-bundle.umd.min.js","index_files/tippy-6.2.7/tippy-light-border.css","index_files/tippy-6.2.7/tippy.css","index_files/tippy-6.2.7/tippy.umd.min.js","index_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1549,7 +1549,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p>MILESTONE 4:</p>
+<p>The scatterplot above illustrates the relationship between the share of voters who voted for Trump and the average hate crimes per 100k population. Each point on the plot represents a state, with the x-axis showing the percentage of voters who supported Trump, and the y-axis representing the average hate crimes per 100k population.</p>
+<p>When looking at the scatterplot, it appears that there is a complex correlation at hand—and even perhaps no correlation. However, it should be noted that all of the values on the table are concentrated between the 0.4 and 0.6 range of the x-variable (Share of Voters Voted for Trump). Within this range, there seems to be a slight negative correlation. However, it is essential to conduct further statistical analysis to determine the correlation. To do so, I will be adding the correlation coefficient to my scatterplot</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></span></code></pre>
+</div>
+<pre><code>tibble [45 × 12] (S3: tbl_df/tbl/data.frame)
+ $ state                                   : chr [1:45] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
+ $ median_household_income                 : chr [1:45] &quot;42278&quot; &quot;67629&quot; &quot;49254&quot; &quot;44922&quot; ...
+ $ share_unemployed_seasonal               : chr [1:45] &quot;0.06&quot; &quot;0.064&quot; &quot;0.063&quot; &quot;0.052&quot; ...
+ $ share_population_in_metro_areas         : chr [1:45] &quot;0.64&quot; &quot;0.63&quot; &quot;0.9&quot; &quot;0.69&quot; ...
+ $ share_population_with_high_school_degree: chr [1:45] &quot;0.821&quot; &quot;0.914&quot; &quot;0.842&quot; &quot;0.824&quot; ...
+ $ share_non_citizen                       : chr [1:45] &quot;0.02&quot; &quot;0.04&quot; &quot;0.1&quot; &quot;0.04&quot; ...
+ $ share_white_poverty                     : chr [1:45] &quot;0.12&quot; &quot;0.06&quot; &quot;0.09&quot; &quot;0.12&quot; ...
+ $ gini_index                              : chr [1:45] &quot;0.472&quot; &quot;0.422&quot; &quot;0.455&quot; &quot;0.458&quot; ...
+ $ share_non_white                         : chr [1:45] &quot;0.35&quot; &quot;0.42&quot; &quot;0.49&quot; &quot;0.26&quot; ...
+ $ share_voters_voted_trump                : num [1:45] 0.63 0.53 0.5 0.6 0.33 0.44 0.41 0.42 0.04 0.49 ...
+ $ hate_crimes_per_100k_splc               : chr [1:45] &quot;0.125838926&quot; &quot;0.143740118&quot; &quot;0.225319954&quot; &quot;0.069060773&quot; ...
+ $ avg_hatecrimes_per_100k_fbi             : num [1:45] 1.806 1.657 3.414 0.869 2.398 ...</code></pre>
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>correlation_coefficient</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_voters_voted_trump</span>, <span class='va'>data</span><span class='op'>$</span><span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>scatterplot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>share_voters_voted_trump</span>, y <span class='op'>=</span> <span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Share of Voters Voted for Trump"</span>, y <span class='op'>=</span> <span class='st'>"Average Hate Crimes per 100k Population"</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x <span class='op'>=</span> <span class='fl'>0.5</span>, y <span class='op'>=</span> <span class='fl'>9</span>, label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Correlation: "</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>correlation_coefficient</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>scatterplot</span></span></code></pre>
+</div>
+<p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
+</div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

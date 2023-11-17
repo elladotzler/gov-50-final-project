@@ -65,6 +65,5 @@ scatterplot <- ggplot(data, aes(x = share_voters_voted_trump, y = avg_hatecrimes
   annotate("text", x = 0.5, y = 9, label = paste("Correlation: ", round(correlation_coefficient, 3)))
 
 scatterplot
-
 ```
 
