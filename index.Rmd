@@ -48,7 +48,7 @@ scatterplot <- data |>
 
 scatterplot
 ```
-MILESTONE 3:
+MILESTONE 4:
 
 The scatterplot above illustrates the relationship between the share of voters who voted for Trump and the average hate crimes per 100k population. Each point on the plot represents a state, with the x-axis showing the percentage of voters who supported Trump, and the y-axis representing the average hate crimes per 100k population.
 
