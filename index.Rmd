@@ -1,7 +1,7 @@
 ---
 title: "Gov 50 Final Project"
 author: "Ella Dotzler"
-description: "My final project"
+description: "What is the relationship because educational availability and economic status?"
 output:
   distill::distill_article:
     self_contained: false
@@ -34,8 +34,11 @@ histogram <- ggplot(data, aes (x=share_population_with_high_school_degree)) +
 histogram
 ```
 
+Data Analysis:
 
-#Results:
+This study relies on data sourced from 'fivethirtyeight', a prominent research facility in the United States. This data-set includes information on median household income, the share of the population with a high school degree, and numerous other related factors. Median household income and the share of the population with a high school degree will be the primary focus of the project. This analysis covers block groups following the 2016 presidential election and was initially focused on analyzing post-election hate crimes. However, the data on educational attainment and economic status is equally compelling. 
+
+The outcome variable is the share of the population with a high school degree, and the explanatory variable is the median household income. Other potential variables, such as demographic factors, political affiliation, and employment status could all be large contributers and therefore should not be discounted. However, because the purpose of this research design is to compare median household income to high school degree attainment, they will be overlooked throughout the course of this project.
 
 ```{r}
 library(tidyverse)
@@ -60,20 +63,35 @@ scatterplot <- data |>
     plot.title=element_text(size=10, color='black'),
     axis.title=element_text(size=10, color='black'),
     panel.grid = element_blank()
- 
   )
-
 scatterplot
 ```
+Results:
 
+The scatter plot created above shows a clearly positive relationship between median household income and the share of the population with a high school degree. This visual depiction of the data suggests a positive relationship between income and educational attainment, meaning that as income increases, high school degree attainment will as well. What is most interesting about this data set though, is that it is not explicitly clear as to which direction the positive relationship flows. For example, it could also be the case that, as educational attainment increases, median household income will in response. That is what makes this data set particularly worth studying—the variables are so clearly interwined that the correlation and causation becomes a bit complicated. 
 
 
 ```{r}
+install.packages(broom)
+
+library(tidyverse)
+library(broom)
+library(kableExtra)
+
 modelsummary <- lm(share_population_with_high_school_degree ~ median_household_income, data = data)
 
 modelsummary
+
+tidy_results <- tidy(modelsummary) 
+
+regression_table <- tidy_results |>
+  kable(format="html") 
+
+regression_table
+
 ```
-Conclusion
+
+Conclusion:
 
 Data Information:
 
