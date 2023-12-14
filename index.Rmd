@@ -6,21 +6,13 @@ output:
   distill::distill_article:
     self_contained: false
 ---
-https://github.com/fivethirtyeight/data.git
-
-https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv
 
 Introduction:
 
-In modern society, there is a clear baseline intersection of educational output and economic conditions. This will be further analyzed throughout this final project, where the frequency of High School diplomas obtained will be measured in relation to the median household income by area. This research seeks to analyze how correlated the two variables are. The hypothesis during this research is that, as frequency of high school diplomas increases, that the median household income will also increase. Because of this positve relationship, it will likely be the case that regional and community-oriented economic dispar
+In modern society, there is a clear baseline intersection of educational output and economic conditions. This will be further analyzed throughout this final project, where the frequency of High School diplomas obtained will be measured in relation to the median household income by area. This research seeks to analyze how correlated the two variables are. The hypothesis during this research is that, as frequency of high school diplomas increases, that the median household income will also increase. Because of this positive relationship, it will likely be the case that regional and community-oriented economic disparities will be intertwined with the availability of educational opportunities. This further proves the claim that educational opportunity and availability has a drastic effect on the economic success of both the individual and the community. 
 
-Data Analysis:
+It is also true, though, that the relationship between educational opportunity and economic status is reversible. For example, if one does not have the economic stability, they will fail to fulfill their personal educational needs and that of their offspring—ultimately contributing to a painful cycle. This research aims to contribute to the broader and more meaningful discussion of the connection between economic factors and educational attainment.  
 
-
-
-
-
-.
 ```{r}
 library(tidyverse)
 library(ggplot2)
@@ -81,4 +73,10 @@ modelsummary <- lm(share_population_with_high_school_degree ~ median_household_i
 
 modelsummary
 ```
-#Conclusion
+Conclusion
+
+Data Information:
+
+https://github.com/fivethirtyeight/data.git
+
+https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv
