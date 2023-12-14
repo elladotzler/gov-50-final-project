@@ -72,7 +72,6 @@ The scatter plot created above shows a clearly positive relationship between med
 
 
 ```{r}
-install.packages(broom)
 
 library(tidyverse)
 library(broom)
