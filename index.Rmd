@@ -68,7 +68,7 @@ scatterplot
 ```
 Results:
 
-The scatter plot created above shows a clearly positive relationship between median household income and the share of the population with a high school degree. This visual depiction of the data suggests a positive relationship between income and educational attainment, meaning that as income increases, high school degree attainment will as well. What is most interesting about this data set though, is that it is not explicitly clear as to which direction the positive relationship flows. For example, it could also be the case that, as educational attainment increases, median household income will in response. That is what makes this data set particularly worth studying—the variables are so clearly interwined that the correlation and causation becomes a bit complicated. 
+The scatter plot created above shows a clearly positive relationship between median household income and the share of the population with a high school degree. This visual depiction of the data suggests a positive relationship between income and educational attainment, meaning that as income increases, high school degree attainment will as well. What is most interesting about this data set though, is that it is not explicitly clear as to which direction the positive relationship flows. For example, it could also be the case that, as educational attainment increases, median household income will in response. That is what makes this data set particularly worth studying—the variables are so clearly intertwined that the correlation and causation becomes a bit complicated. 
 
 
 ```{r}
@@ -89,8 +89,14 @@ regression_table <- tidy_results |>
 regression_table
 
 ```
+Results, Continued:
+
+The analysis provided above does reveal a statistically significant link between median household income and the share of population with high school degrees. For every one-unit increase in median household income, the share of population with high school degrees is predicted to raise by a mere 0.0000024 units. This change is extremely small, yet remains statistically significant given that the p-value is less than 0.005. However, practically this difference is incredibly minute and while it may be statistically significant, it may not be reliable data given its small magnitude. 
+
 
 Conclusion:
+
+Because this research is limited to analysis based only on two variables, and because the concepts at hand are far more nuanced than this project allowed for, it should be noted that other variables will inevitably play large roles in this relationship.
 
 Data Information:
 
