@@ -1517,70 +1517,82 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </div>
 
 <div class="d-article">
-<h2 id="project-thoughts">Project thoughts</h2>
-<p>I am interested in exploring data related to…</p>
-<p>I am interested in exploring data related to… I would like to explore incarceration rates among different populations with an emphasis on race and socioeconomic status. While I am not sure that this is the final topic I will decide to pursue—especially depending on data availability—this is the topic that I am primarily interested in. I would be interested in obtaining the correlation between race, incarceration, and police presence in a community but am unsure if this is too many variables to focus on for the scope of this project.</p>
-<p>MILESTONE 2:</p>
-<p>Is there a positive correlation between Share Voters who Voted Trump per state and Average Hate Crimes per 100k people per state? In this study, I plan to determine if there is a correlation between voting patterns in the 2016 election and hate crime rates dependent on state. I hypothesize that in states where there is a higher percentage of Trump supporting votes, there will be an increased rate of hate crimes due to extreme polarization of the state—states with high levels of Trump supporting votes are often very polarized, ultimately leading to a higher average of hate crimes in the state. My sample is comprised of data analyzing income inequality and levels of hate crimes, but one of the variables happens to be levels of Trump support within the state, which offers an interesting political perspective on the issue that has likely been under-reported. The outcome variable of interest relates to the average hate crimes per 100k people in any given state and is calculated year over year per 100k people. The observed pattern in the data that would support this hypothesis would be a positive correlation between the percentage of Trump supportive votes and a higher rate of hate crimes per 100k people. The opposite would therefore disprove my hypothesis—if a low support level of Trump contributed to a high level of hate crimes or if a high support level of Trump contributed to a low level of hate crimes.</p>
 <p><a href="https://github.com/fivethirtyeight/data.git" class="uri">https://github.com/fivethirtyeight/data.git</a></p>
-<p><a href="https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv" class="uri">https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv</a></p>
+<p><a href="https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv" class="uri">https://github.com/fivethirtyeight/data/blob/cda0c0d9054fc6d020a42f064e87f11c8df85508/hate-crimes/hate_crimes.csv</a>
+#Introduction:</p>
+<p>#Data Analysis:</p>
+.
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
 <pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
 <span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
 <span></span>
-<span><span class='co'># Loading the data, replacing the top row with the actual names of variables</span></span>
 <span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"hate_crimes_final.csv"</span><span class='op'>)</span></span>
 <span><span class='va'>new_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span><span class='op'>)</span></span>
 <span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>data</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span>,<span class='op'>]</span></span>
 <span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>new_names</span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_voters_voted_trump</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_voters_voted_trump</span><span class='op'>)</span></span>
-<span><span class='va'>data</span><span class='op'>$</span><span class='va'>avg_hatecrimes_per_100k_fbi</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span></span>
+<span><span class='va'>data</span><span class='op'>$</span><span class='va'>median_household_income</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>median_household_income</span><span class='op'>)</span></span>
+<span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_population_with_high_school_degree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_population_with_high_school_degree</span><span class='op'>)</span></span>
 <span></span>
-<span></span>
-<span><span class='va'>scatterplot</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>|&gt;</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>share_voters_voted_trump</span>, y<span class='op'>=</span><span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='st'>"Share of Voters Voted for Trump"</span>, y<span class='op'>=</span><span class='st'>"Average Hate Crimes per 100k Population"</span><span class='op'>)</span></span>
-<span></span>
-<span><span class='va'>scatterplot</span></span></code></pre>
+<span><span class='va'>histogram</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span> <span class='op'>(</span>x<span class='op'>=</span><span class='va'>share_population_with_high_school_degree</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></span><span class='op'>(</span>fill<span class='op'>=</span><span class='st'>'lightpink'</span>,color<span class='op'>=</span><span class='st'>"grey"</span>, bins<span class='op'>=</span><span class='fl'>30</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title<span class='op'>=</span><span class='st'>"Distribution of High School Degree Share"</span>,</span>
+<span>       x<span class='op'>=</span><span class='st'>"Share of Population with High School Degree"</span>,</span>
+<span>       y<span class='op'>=</span><span class='st'>"Frequency"</span><span class='op'>)</span></span>
+<span><span class='va'>histogram</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-1-1.png" width="624" /></p>
 </div>
-<p>MILESTONE 4:</p>
-<p>The scatterplot above illustrates the relationship between the share of voters who voted for Trump and the average hate crimes per 100k population. Each point on the plot represents a state, with the x-axis showing the percentage of voters who supported Trump, and the y-axis representing the average hate crimes per 100k population.</p>
-<p>When looking at the scatterplot, it appears that there is a complex correlation at hand—and even perhaps no correlation. However, it should be noted that all of the values on the table are concentrated between the 0.4 and 0.6 range of the x-variable (Share of Voters Voted for Trump). Within this range, there seems to be a slight negative correlation. However, it is essential to conduct further statistical analysis to determine the correlation. To do so, I will be adding the correlation coefficient to my scatterplot</p>
+<p>#Results:</p>
 <div class="layout-chunk" data-layout="l-body">
 <div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>)</span></span></code></pre>
-</div>
-<pre><code>tibble [45 × 12] (S3: tbl_df/tbl/data.frame)
- $ state                                   : chr [1:45] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
- $ median_household_income                 : chr [1:45] &quot;42278&quot; &quot;67629&quot; &quot;49254&quot; &quot;44922&quot; ...
- $ share_unemployed_seasonal               : chr [1:45] &quot;0.06&quot; &quot;0.064&quot; &quot;0.063&quot; &quot;0.052&quot; ...
- $ share_population_in_metro_areas         : chr [1:45] &quot;0.64&quot; &quot;0.63&quot; &quot;0.9&quot; &quot;0.69&quot; ...
- $ share_population_with_high_school_degree: chr [1:45] &quot;0.821&quot; &quot;0.914&quot; &quot;0.842&quot; &quot;0.824&quot; ...
- $ share_non_citizen                       : chr [1:45] &quot;0.02&quot; &quot;0.04&quot; &quot;0.1&quot; &quot;0.04&quot; ...
- $ share_white_poverty                     : chr [1:45] &quot;0.12&quot; &quot;0.06&quot; &quot;0.09&quot; &quot;0.12&quot; ...
- $ gini_index                              : chr [1:45] &quot;0.472&quot; &quot;0.422&quot; &quot;0.455&quot; &quot;0.458&quot; ...
- $ share_non_white                         : chr [1:45] &quot;0.35&quot; &quot;0.42&quot; &quot;0.49&quot; &quot;0.26&quot; ...
- $ share_voters_voted_trump                : num [1:45] 0.63 0.53 0.5 0.6 0.33 0.44 0.41 0.42 0.04 0.49 ...
- $ hate_crimes_per_100k_splc               : chr [1:45] &quot;0.125838926&quot; &quot;0.143740118&quot; &quot;0.225319954&quot; &quot;0.069060773&quot; ...
- $ avg_hatecrimes_per_100k_fbi             : num [1:45] 1.806 1.657 3.414 0.869 2.398 ...</code></pre>
-<div class="sourceCode">
-<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>correlation_coefficient</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/cor.html'>cor</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_voters_voted_trump</span>, <span class='va'>data</span><span class='op'>$</span><span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span></span>
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://tidyverse.tidyverse.org'>tidyverse</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span></span>
+<span><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span></span>
 <span></span>
-<span><span class='va'>scatterplot</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>share_voters_voted_trump</span>, y <span class='op'>=</span> <span class='va'>avg_hatecrimes_per_100k_fbi</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='st'>"Share of Voters Voted for Trump"</span>, y <span class='op'>=</span> <span class='st'>"Average Hate Crimes per 100k Population"</span><span class='op'>)</span> <span class='op'>+</span></span>
-<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/annotate.html'>annotate</a></span><span class='op'>(</span><span class='st'>"text"</span>, x <span class='op'>=</span> <span class='fl'>0.5</span>, y <span class='op'>=</span> <span class='fl'>9</span>, label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste</a></span><span class='op'>(</span><span class='st'>"Correlation: "</span>, <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>correlation_coefficient</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>)</span><span class='op'>)</span></span>
+<span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://readr.tidyverse.org/reference/read_delim.html'>read_csv</a></span><span class='op'>(</span><span class='st'>"hate_crimes_final.csv"</span><span class='op'>)</span></span>
+<span><span class='va'>new_names</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/character.html'>as.character</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>[</span><span class='fl'>1</span>,<span class='op'>]</span><span class='op'>)</span></span>
+<span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='va'>data</span><span class='op'>[</span><span class='op'>-</span><span class='fl'>1</span>,<span class='op'>]</span></span>
+<span><span class='va'>data</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/setNames.html'>setNames</a></span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>new_names</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>data</span><span class='op'>$</span><span class='va'>median_household_income</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>median_household_income</span><span class='op'>)</span></span>
+<span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_population_with_high_school_degree</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/numeric.html'>as.numeric</a></span><span class='op'>(</span><span class='va'>data</span><span class='op'>$</span><span class='va'>share_population_with_high_school_degree</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>scatterplot</span> <span class='op'>&lt;-</span> <span class='va'>data</span> <span class='op'>|&gt;</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x<span class='op'>=</span><span class='va'>median_household_income</span>, y<span class='op'>=</span><span class='va'>share_population_with_high_school_degree</span><span class='op'>)</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></span><span class='op'>(</span>color<span class='op'>=</span><span class='st'>'pink'</span>, size <span class='op'>=</span><span class='fl'>4</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_smooth.html'>geom_smooth</a></span><span class='op'>(</span>method<span class='op'>=</span><span class='st'>"lm"</span>, se<span class='op'>=</span><span class='cn'>FALSE</span>, color<span class='op'>=</span><span class='st'>'grey'</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/labs.html'>labs</a></span><span class='op'>(</span>title<span class='op'>=</span><span class='st'>"Relationship between Median Household Income and High School Degree Share"</span>,x<span class='op'>=</span><span class='st'>"Median Household Income"</span>, y<span class='op'>=</span><span class='st'>"Share of Population with High School Degree"</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_minimal</a></span> <span class='op'>(</span><span class='op'>)</span><span class='op'>+</span></span>
+<span>  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/theme.html'>theme</a></span><span class='op'>(</span></span>
+<span>    plot.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span>,</span>
+<span>    axis.title<span class='op'>=</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_text</a></span><span class='op'>(</span>size<span class='op'>=</span><span class='fl'>10</span>, color<span class='op'>=</span><span class='st'>'black'</span><span class='op'>)</span>,</span>
+<span>    panel.grid <span class='op'>=</span> <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/element.html'>element_blank</a></span><span class='op'>(</span><span class='op'>)</span></span>
+<span> </span>
+<span>  <span class='op'>)</span></span>
 <span></span>
 <span><span class='va'>scatterplot</span></span></code></pre>
 </div>
 <p><img src="index_files/figure-html5/unnamed-chunk-2-1.png" width="624" /></p>
 </div>
+<div class="layout-chunk" data-layout="l-body">
+<div class="sourceCode">
+<pre class="sourceCode r"><code class="sourceCode r"><span><span class='va'>modelsummary</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/stats/lm.html'>lm</a></span><span class='op'>(</span><span class='va'>share_population_with_high_school_degree</span> <span class='op'>~</span> <span class='va'>median_household_income</span>, data <span class='op'>=</span> <span class='va'>data</span><span class='op'>)</span></span>
+<span></span>
+<span><span class='va'>modelsummary</span></span></code></pre>
+</div>
+<pre><code>
+Call:
+lm(formula = share_population_with_high_school_degree ~ median_household_income, 
+    data = data)
+
+Coefficients:
+            (Intercept)  median_household_income  
+              7.356e-01                2.368e-06  </code></pre>
+</div>
+<p>#Conclusion</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
